@@ -3,9 +3,8 @@ using static SocialNetwork.Entities.DTOs.UserDTO;
 
 namespace SocialNetwork.Business.Abstract
 {
-    public interface IAuthService
+    public interface IUserService
     {
-        IResult Login(LoginDTO login);
-        IResult Register(RegisterDTO register);
+        IDataResult<UserByEmailDTO> GetUserByEmail(string email);
     }
 }
