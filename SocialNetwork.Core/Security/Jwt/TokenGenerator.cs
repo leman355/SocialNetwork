@@ -11,7 +11,7 @@ namespace SocialNetwork.Core.Security.Jwt
         public static string Token(User user, string role)
         {
             var jwtHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.UTF8.GetBytes("rbVVCcaLFf2XDRKDmocDEelWwNT7LY5Ak3D3A76HV2k");
+            var key = Encoding.UTF8.GetBytes("nmDLKAna9f9WEKPPH7z3tgwnQ433FAtrdP5c9AmDnmuJp9rzwTPwJ9yUu");
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[]

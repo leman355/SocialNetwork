@@ -13,6 +13,7 @@ namespace SocialNetwork.Business.AutoMapper
 
             CreateMap<UserByEmailDTO, User>();
             CreateMap<User, UserByEmailDTO>();
+            
         }
     }
 }

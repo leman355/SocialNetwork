@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SocialNetwork.Entities\SocialNetwork.Entities.csproj" />
     <ProjectReference Include="..\SocialNetwork.Business\SocialNetwork.Business.csproj" />
+    <ProjectReference Include="..\SocialNetwork.Entities\SocialNetwork.Entities.csproj" />
     <ProjectReference Include="..\SocialNetwork.Core\SocialNetwork.Core.csproj" />
   </ItemGroup>
 

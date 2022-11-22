@@ -5,7 +5,6 @@ using SocialNetwork.Core.Helpers.Result.Abstract;
 using SocialNetwork.Core.Helpers.Result.Concrete.ErrorResults;
 using SocialNetwork.Core.Helpers.Result.Concrete.SuccessResults;
 using SocialNetwork.DataAccess.Abstract;
-using SocialNetwork.Entities.DTOs;
 using static SocialNetwork.Entities.DTOs.UserDTO;
 
 namespace SocialNetwork.Business.Concrete
@@ -15,7 +14,7 @@ namespace SocialNetwork.Business.Concrete
         private readonly IUserDal _userDal;
         private readonly IMapper _mapper;
 
-        public UserManager(IUserDal userDal, IMapper mapper = null)
+        public UserManager(IUserDal userDal, IMapper mapper)
         {
             _userDal = userDal;
             _mapper = mapper;
@@ -23,15 +22,22 @@ namespace SocialNetwork.Business.Concrete
 
         public IDataResult<UserByEmailDTO> GetUserByEmail(string email)
         {
-            var user = _userDal.Get(x => x.Email == email);
-            if (user.Email != null)
+            try
             {
-                var model = _mapper.Map<UserByEmailDTO>(user);
-                return new SuccessDataResult<UserByEmailDTO>(model);
+                var user = _userDal.Get(x => x.Email == email);
+                if (user.Email != null)
+                {
+                    var model = _mapper.Map<UserByEmailDTO>(user);
+                    return new SuccessDataResult<UserByEmailDTO>(model);
+                }
+                else
+                {
+                    return new ErrorDataResult<UserByEmailDTO>(Messages.UserNotFound);
+                }
             }
-            else
+            catch (Exception e)
             {
-                return new ErrorDataResult<UserByEmailDTO>(Messages.UserNotFound);
+                    return new ErrorDataResult<UserByEmailDTO>(e.Message);
             }
         }
     }

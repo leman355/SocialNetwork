@@ -12,7 +12,7 @@ using SocialNetwork.DataAccess.Concrete;
 namespace SocialNetwork.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221118061157_initial")]
+    [Migration("20221122180951_initial")]
     partial class initial
     {
         /// <inheritdoc />

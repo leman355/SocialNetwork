@@ -11,7 +11,9 @@ namespace SocialNetwork.Business.Autofac
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<AuthManager>().As<IAuthService>();
+
             builder.RegisterType<UserDal>().As<IUserDal>();
+            builder.RegisterType<UserManager>().As<IUserService>();
         }
     }
 }
