@@ -112,6 +112,60 @@ namespace SocialNetwork.DataAccess.Migrations
                     b.ToTable("UserRoles");
                 });
 
+            modelBuilder.Entity("SocialNetwork.Entities.Concrete.Post", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("PublishDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("SocialNetwork.Entities.Concrete.PostLike", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsLike")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PostLikes");
+                });
+
             modelBuilder.Entity("SocialNetwork.Core.Entities.Concrete.UserRole", b =>
                 {
                     b.HasOne("SocialNetwork.Core.Entities.Concrete.Role", "Role")
@@ -131,6 +185,36 @@ namespace SocialNetwork.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("SocialNetwork.Entities.Concrete.Post", b =>
+                {
+                    b.HasOne("SocialNetwork.Core.Entities.Concrete.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SocialNetwork.Entities.Concrete.PostLike", b =>
+                {
+                    b.HasOne("SocialNetwork.Entities.Concrete.Post", "Post")
+                        .WithMany("PostLikes")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SocialNetwork.Core.Entities.Concrete.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("SocialNetwork.Core.Entities.Concrete.Role", b =>
                 {
                     b.Navigation("UserRoles");
@@ -139,6 +223,11 @@ namespace SocialNetwork.DataAccess.Migrations
             modelBuilder.Entity("SocialNetwork.Core.Entities.Concrete.User", b =>
                 {
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("SocialNetwork.Entities.Concrete.Post", b =>
+                {
+                    b.Navigation("PostLikes");
                 });
 #pragma warning restore 612, 618
         }
