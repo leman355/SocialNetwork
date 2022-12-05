@@ -12,8 +12,8 @@ using SocialNetwork.DataAccess.Concrete;
 namespace SocialNetwork.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221127133710_initial")]
-    partial class initial
+    [Migration("20221201194153_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

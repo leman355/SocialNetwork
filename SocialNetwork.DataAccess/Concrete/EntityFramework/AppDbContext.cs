@@ -8,8 +8,9 @@ namespace SocialNetwork.DataAccess.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            builder.UseSqlServer("Data Source=WIN-OO1ICO19G9E;initial catalog=SocialNetwork;Trusted_connection=true;TrustServerCertificate =True;");
+            builder.UseSqlServer("Data Source=WIN-OO1ICO19G9E;initial catalog=SocialNetwork;Trusted_connection=true;TrustServerCertificate=True;");
         }
+
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }

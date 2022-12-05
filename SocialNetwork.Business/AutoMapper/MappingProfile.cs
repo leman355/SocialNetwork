@@ -18,7 +18,7 @@ namespace SocialNetwork.Business.AutoMapper
 
             CreateMap<PostCreateDTO, Post>().ReverseMap();
             CreateMap<Post, PostDeleteDTO>().ReverseMap();
-            
+
         }
     }
 }

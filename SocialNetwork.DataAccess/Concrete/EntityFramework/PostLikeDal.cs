@@ -11,5 +11,26 @@ namespace SocialNetwork.DataAccess.Concrete.EntityFramework
 {
     public class PostLikeDal : EfRepositoryBase<PostLike, AppDbContext>, IPostLikeDal
     {
+        public void LikePost(Guid userId, int postId)
+        {
+            using AppDbContext context = new();
+
+            var postLike = context.PostLikes.FirstOrDefault(x => x.UserId == userId && x.PostId == postId);
+            if (postLike == null)
+            {
+                context.PostLikes.Add(new PostLike
+                {
+                    UserId = userId,
+                    PostId = postId,
+                    IsLike= true
+                });
+            }
+            else
+            {
+                context.PostLikes.Remove(postLike);
+            }
+
+            context.SaveChanges();
+        }
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialNetwork.Business.Abstract;
 using static SocialNetwork.Entities.DTOs.UserDTO;
@@ -23,12 +24,12 @@ public class AuthController : ControllerBase
         var result = _authService.Login(login);
         if (result.Success)
         {
-            return Ok(new {status = 200, message = result.Message });
+            return Ok(new { status = 200, message = result.Message });
         }
         return BadRequest(result.Message);
     }
 
-     [HttpPost("register")]
+    [HttpPost("register")]
     public IActionResult Register(RegisterDTO model)
     {
         var result = _authService.Register(model);

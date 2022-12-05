@@ -3,7 +3,7 @@ using SocialNetwork.Core.Entities.Concrete;
 
 namespace SocialNetwork.Entities.Concrete
 {
-    public class Post:IEntity
+    public class Post : IEntity
     {
         public int Id { get; set; }
         public Guid UserId { get; set; }

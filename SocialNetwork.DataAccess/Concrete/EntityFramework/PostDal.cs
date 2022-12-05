@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.DataAccess.Concrete.EntityFramework
 {
-    public class PostDal:EfRepositoryBase<Post,AppDbContext>,IPostDal
+    public class PostDal : EfRepositoryBase<Post,AppDbContext>, IPostDal
     {
     }
 }
